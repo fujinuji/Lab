@@ -1,4 +1,7 @@
 package scs.ubb.map.ui;
 
-public class ui {
+public class Ui {
+    public static void runUI() {
+
+    }
 }

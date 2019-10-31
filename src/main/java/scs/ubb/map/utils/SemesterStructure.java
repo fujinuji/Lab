@@ -4,18 +4,27 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 public class SemesterStructure {
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private static LocalDate startDate;
+    private static LocalDate endDate;
 
-    public static int getCurrentWeek() {
-        Calendar calendar = Calendar.getInstance();
+    private SemesterStructure instance;
 
-        System.out.println(calendar.get(Calendar.WEEK_OF_YEAR));
-
-        return  1;
+    public SemesterStructure(LocalDate startDate, LocalDate endDate) {
+        SemesterStructure.startDate = startDate;
+        SemesterStructure.endDate = endDate;
     }
 
-    public static void main(String[] args) {
-        int a = getCurrentWeek();
+    public SemesterStructure getInstance() {
+        instance = instance == null ? new SemesterStructure(null, null) : instance;
+        return instance;
+    }
+
+    public static int getCurrentWeek() {
+        Calendar nowCalendar = Calendar.getInstance();
+        Calendar beginningCalendar = Calendar.getInstance();
+
+        beginningCalendar.set(startDate.getYear(), startDate.getMonthValue() - 1, startDate.getDayOfMonth());
+
+        return nowCalendar.get(Calendar.WEEK_OF_YEAR) - beginningCalendar.get(Calendar.WEEK_OF_YEAR) + 1;
     }
 }
