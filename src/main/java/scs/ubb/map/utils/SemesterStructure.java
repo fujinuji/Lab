@@ -1,30 +1,45 @@
 package scs.ubb.map.utils;
 
+import scs.ubb.map.validators.SemesterValidator;
+
 import java.time.LocalDate;
-import java.util.Calendar;
 
 public class SemesterStructure {
-    private static LocalDate startDate;
-    private static LocalDate endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalDate holidayStartDate;
+    private LocalDate holidayEndDate;
 
-    private SemesterStructure instance;
+    private static SemesterStructure instance;
 
-    public SemesterStructure(LocalDate startDate, LocalDate endDate) {
-        SemesterStructure.startDate = startDate;
-        SemesterStructure.endDate = endDate;
+    public SemesterStructure(LocalDate startDate, LocalDate endDate,
+                             LocalDate holidayStartDate, LocalDate holidayEndDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.holidayStartDate = holidayStartDate;
+        this.holidayEndDate = holidayEndDate;
+        new SemesterValidator().validate(this);
     }
 
-    public SemesterStructure getInstance() {
-        instance = instance == null ? new SemesterStructure(null, null) : instance;
+    public static SemesterStructure getInstance() {
+        instance = instance == null ? new SemesterStructure(null, null,
+                null, null) : instance;
         return instance;
     }
 
-    public static int getCurrentWeek() {
-        Calendar nowCalendar = Calendar.getInstance();
-        Calendar beginningCalendar = Calendar.getInstance();
+    public LocalDate getStartDate() {
+        return startDate;
+    }
 
-        beginningCalendar.set(startDate.getYear(), startDate.getMonthValue() - 1, startDate.getDayOfMonth());
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 
-        return nowCalendar.get(Calendar.WEEK_OF_YEAR) - beginningCalendar.get(Calendar.WEEK_OF_YEAR) + 1;
+    public LocalDate getHolidayStartDate() {
+        return holidayStartDate;
+    }
+
+    public LocalDate getHolidayEndDate() {
+        return holidayEndDate;
     }
 }

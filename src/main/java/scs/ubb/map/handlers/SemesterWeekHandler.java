@@ -1,4 +1,4 @@
-package scs.ubb.map.utils;
+package scs.ubb.map.handlers;
 
 import java.time.LocalDate;
 import java.util.Calendar;

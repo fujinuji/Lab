@@ -1,4 +1,4 @@
-package scs.ubbcluj.map;
+package scs.ubb.map;
 
 
 import com.google.common.collect.Iterables;
