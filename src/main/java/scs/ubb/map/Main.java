@@ -1,28 +1,26 @@
 package scs.ubb.map;
 
-import scs.ubb.map.services.config.Config;
-import scs.ubb.map.utils.AcademicYear;
-import scs.ubb.map.utils.SemesterStructure;
-
-import java.time.LocalDate;
-import java.time.Month;
+import scs.ubb.map.domain.GradeDTO;
+import scs.ubb.map.domain.Student;
+import scs.ubb.map.repository.CrudRepository;
+import scs.ubb.map.repository.files.StudentFileRepository;
+import scs.ubb.map.repository.files.json.GradeJSONRepository;
+import scs.ubb.map.repository.files.json.JSONRepository;
+import scs.ubb.map.services.config.ApplicationContext;
+import scs.ubb.map.validators.StudentValidator;
 
 public class Main {
     public static void main(String[] args) {
-        SemesterStructure semesterStructure1 = new SemesterStructure(LocalDate.of(2019, Month.SEPTEMBER, 30),
-                LocalDate.of(2020, Month.JANUARY, 17),
-                LocalDate.of(2019, Month.DECEMBER, 21),
-                LocalDate.of(2020, Month.JANUARY, 5));
+        CrudRepository crudRepository = new StudentFileRepository(new StudentValidator(),
+                ApplicationContext.getPROPERTIES().getProperty("student-data"));
+        Student student = new Student("Prenume", "Nume", "Mail", 122);
+        student.setId(2L);
+        crudRepository.findAll().forEach(System.out::println);
+        crudRepository.save(student);
+        crudRepository.findAll().forEach(System.out::println);
 
-        SemesterStructure semesterStructure2 = new SemesterStructure(LocalDate.of(2020, Month.FEBRUARY, 24),
-                LocalDate.of(2020, Month.MAY, 17),
-                LocalDate.of(2020, Month.APRIL, 20),
-                LocalDate.of(2020, Month.APRIL, 26));
-
-        AcademicYear academicYear = new AcademicYear(Config.getProperties().getProperty("year-data"));
-        System.out.println(academicYear.getSemesterWeek(LocalDate.now()));
-//
-//        System.out.println(semesterStructure1.getSemesterWeek(LocalDate.of(2020, Month.JANUARY, 1)));
-//        System.out.println(semesterStructure2.getSemesterWeek(LocalDate.of(2020, Month.APRIL, 27)));
+        JSONRepository<GradeDTO> jsonRepository = new GradeJSONRepository("data/studentsGrades/");
+        GradeDTO gradeDTO = new GradeDTO("Student", 5,10, 5, 6, "Perfect");
+        jsonRepository.writeJson(gradeDTO);
     }
 }

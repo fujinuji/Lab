@@ -9,15 +9,21 @@ import java.time.LocalDate;
 
 public class AcademicYear {
     private SemesterStructure semesterStructure;
+    private static AcademicYear instance;
 
     public AcademicYear(String academicYearFile) {
         try {
             this.semesterStructure = new AcademicYearHandler(academicYearFile).getCurrentSemester();
+            instance = this;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public static AcademicYear getInstance() {
+        return instance;
     }
 
     public int getCurrentWeek() {
