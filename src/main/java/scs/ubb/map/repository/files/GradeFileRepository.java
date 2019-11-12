@@ -7,19 +7,21 @@ import scs.ubb.map.validators.Validator;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class GradeRepository extends InFileRepository<String, Grade>{
-    public GradeRepository(Validator<Grade> validator, String fileName) {
+public class GradeFileRepository extends InFileRepository<String, Grade> {
+    public GradeFileRepository(Validator<Grade> validator, String fileName) {
         super(validator, fileName);
     }
 
     @Override
     Grade getEntity(String line) {
         String[] lines = line.split(";");
-        if(lines.length == 4) {
+        if (lines.length == 6) {
             Grade grade = new Grade(
                     lines[1],
                     Float.parseFloat(lines[2]),
-                    LocalDate.parse(lines[3], DateTimeFormatter.ofPattern(Constants.DATE_FORMAT))
+                    LocalDate.parse(lines[3], DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)),
+                    Long.parseLong(lines[4]),
+                    Integer.parseInt(lines[5])
             );
             grade.setId(lines[0]);
             return grade;
@@ -35,6 +37,8 @@ public class GradeRepository extends InFileRepository<String, Grade>{
         return entity.getId() + ";"
                 + entity.getTeacher() + ";"
                 + entity.getGrade() + ";"
-                + entity.getDate().format(DateTimeFormatter.ofPattern(Constants.DATE_FORMAT));
+                + entity.getDate().format(DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)) + ";"
+                + entity.getStudentId() + ";"
+                + entity.getHomeworkId();
     }
 }

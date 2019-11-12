@@ -18,14 +18,14 @@ public abstract class InFileRepository<ID, E extends Entity<ID>> extends InMemor
 
     public InFileRepository(Validator<E> validator, String fileName) {
         super(validator);
-        this.fileName =  fileName;
+        this.fileName = fileName;
         loadData();
     }
 
     @Override
     public E save(E entity) throws ValidationException {
         E savedEntity = super.save(entity);
-        if(savedEntity == null) {
+        if (savedEntity == null) {
             writeToFile(entity);
         }
         return savedEntity;
@@ -81,13 +81,14 @@ public abstract class InFileRepository<ID, E extends Entity<ID>> extends InMemor
                 try {
                     bufferedWriter.write(getEntityString(entity));
                     bufferedWriter.newLine();
-                } catch(IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
-        }}
+        }
+    }
 
     abstract E getEntity(String line);
 

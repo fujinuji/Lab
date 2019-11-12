@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import scs.ubb.map.domain.Student;
 import scs.ubb.map.repository.StudentRepository;
-import scs.ubb.map.validators.StudentValidator;
+import scs.ubb.map.validators.repository.StudentValidator;
 import scs.ubb.map.validators.ValidationException;
 
 @RunWith(JUnit4.class)

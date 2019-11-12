@@ -11,7 +11,7 @@ public class StudentFileRepository extends InFileRepository<Long, Student> {
     @Override
     Student getEntity(String line) {
         String[] lines = line.split(";");
-        if(lines.length == 5) {
+        if (lines.length == 5) {
             Student student = new Student(
                     lines[1],
                     lines[2],

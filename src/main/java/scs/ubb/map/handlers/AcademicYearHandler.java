@@ -24,7 +24,7 @@ public class AcademicYearHandler {
 
         JSONArray jsonArray = (JSONArray) parser.parse(new FileReader(fileName));
 
-        for(Object object : jsonArray) {
+        for (Object object : jsonArray) {
             JSONObject jsonObject = (JSONObject) object;
 
             LocalDate beginDate = LocalDate.parse((CharSequence) jsonObject.get("startDate"),

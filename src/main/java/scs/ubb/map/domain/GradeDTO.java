@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class GradeDTO {
+public class GradeDTO extends Entity<Integer> {
     private String studentName;
     private int homework;
     private float grade;

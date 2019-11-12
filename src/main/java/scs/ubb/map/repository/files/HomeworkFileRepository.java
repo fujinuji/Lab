@@ -11,7 +11,7 @@ public class HomeworkFileRepository extends InFileRepository<Integer, Homework> 
     @Override
     Homework getEntity(String line) {
         String[] lines = line.split(";");
-        if(lines.length == 3) {
+        if (lines.length == 4) {
             Homework homework = new Homework(
                     lines[1],
                     Integer.parseInt(lines[2]),

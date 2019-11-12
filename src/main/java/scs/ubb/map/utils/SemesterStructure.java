@@ -1,6 +1,6 @@
 package scs.ubb.map.utils;
 
-import scs.ubb.map.validators.SemesterValidator;
+import scs.ubb.map.validators.repository.SemesterValidator;
 
 import java.time.LocalDate;
 

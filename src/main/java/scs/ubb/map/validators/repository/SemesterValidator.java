@@ -1,6 +1,8 @@
-package scs.ubb.map.validators;
+package scs.ubb.map.validators.repository;
 
 import scs.ubb.map.utils.SemesterStructure;
+import scs.ubb.map.validators.ValidationException;
+import scs.ubb.map.validators.Validator;
 
 public class SemesterValidator implements Validator<SemesterStructure> {
     @Override
@@ -12,7 +14,7 @@ public class SemesterValidator implements Validator<SemesterStructure> {
         }
 
         //TODO Validate holiday dates
-        if(!error.equals("")) {
+        if (!error.equals("")) {
             throw new ValidationException(error);
         }
     }

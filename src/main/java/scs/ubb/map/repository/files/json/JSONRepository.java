@@ -12,7 +12,7 @@ import java.io.IOException;
 public abstract class JSONRepository<E> {
     private String jsonFilesPath;
 
-    public void writeJson(E entity) {
+    public void write(E entity) {
         try (FileWriter file = new FileWriter(jsonFilesPath + getFileName(entity) + ".json")) {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);

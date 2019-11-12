@@ -6,19 +6,19 @@ public class Grade extends Entity<String> {
     private String teacher;
     private LocalDate date;
     private float grade;
-
-    public float getGrade() {
-        return grade;
-    }
+    private Long studentId;
+    private Integer homeworkId;
 
     public void setGrade(float grade) {
         this.grade = grade;
     }
 
-    public Grade(String teacher, float grade, LocalDate date) {
+    public Grade(String teacher, float grade, LocalDate date, Long studentId, Integer homeworkId) {
         this.teacher = teacher;
         this.grade = grade;
         this.date = date;
+        this.studentId = studentId;
+        this.homeworkId = homeworkId;
     }
 
     public String getTeacher() {
@@ -28,4 +28,17 @@ public class Grade extends Entity<String> {
     public LocalDate getDate() {
         return date;
     }
+
+    public float getGrade() {
+        return grade;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public Integer getHomeworkId() {
+        return homeworkId;
+    }
+
 }
