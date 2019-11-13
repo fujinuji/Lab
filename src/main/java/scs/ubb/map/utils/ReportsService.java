@@ -1,6 +1,7 @@
 package scs.ubb.map.utils;
 
 import scs.ubb.map.domain.Grade;
+import scs.ubb.map.domain.GradeFilterDTO;
 import scs.ubb.map.domain.Homework;
 import scs.ubb.map.domain.Student;
 import scs.ubb.map.services.service.Service;
@@ -42,5 +43,19 @@ public class ReportsService {
                 .collect(Collectors.toList());
     }
 
-
+    public List<GradeFilterDTO> getGradesFromAHomeworkInAWeek(int homeworkId, int week) {
+        return StreamSupport.stream(gradeService.findAll().spliterator(), false)
+                .filter(grade -> grade.getHomeworkId() == homeworkId &&
+                        AcademicYear.getInstance().getSemesterWeek(grade.getDate()) == week)
+                .map(grade -> {
+                    Student student = studentService.findOne(grade.getStudentId());
+                    return new GradeFilterDTO(student.getFirstName(),
+                            student.getLastName(),
+                            grade.getGrade(),
+                            grade.getDate(),
+                            grade.getHomeworkId(),
+                            AcademicYear.getInstance().getSemesterWeek(grade.getDate()));
+                })
+                .collect(Collectors.toList());
+    }
 }
