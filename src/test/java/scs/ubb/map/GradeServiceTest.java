@@ -66,7 +66,7 @@ public class GradeServiceTest {
 
     @Test
     public void testTestSaveGradeWithJson() {
-        Grade grade = new Grade("Alice", 9L, LocalDate.now(), 1L, 2);
+        Grade grade = new Grade("Alice", 9L, LocalDate.now(), 3L, 2);
         assertNull(((GradeService)gradeService).save(grade,
                 (StudentService) studentService,
                 (HomeworkService) homeworkService,
