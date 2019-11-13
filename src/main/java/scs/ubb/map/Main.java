@@ -28,7 +28,7 @@ public class Main {
                 Config.getProperties().getProperty("student-data"));
         CrudRepository homeworkRepo = new HomeworkFileRepository(new HomeworkValidator(),
                 Config.getProperties().getProperty("homework-data"));
-        CrudRepository gradeRepo = new GradeFileRepository(new GradeValidator(),
+        CrudRepository gradeRepo = new GradeFileRepository(new GradeValidator(studentRepo, homeworkRepo),
                 Config.getProperties().getProperty("grade-data"));
 
         JSONRepository jsonRepository = new GradeJSONRepository("data/studentsGrades/");
