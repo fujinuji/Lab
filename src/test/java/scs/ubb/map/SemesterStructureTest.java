@@ -1,6 +1,7 @@
 package scs.ubb.map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import scs.ubb.map.utils.SemesterStructure;
@@ -8,6 +9,7 @@ import scs.ubb.map.utils.SemesterStructure;
 import java.time.LocalDate;
 import java.time.Month;
 
+@Ignore
 @RunWith(JUnit4.class)
 public class SemesterStructureTest {
     private SemesterStructure semesterStructure;

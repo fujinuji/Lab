@@ -19,6 +19,7 @@ public class Grade extends Entity<String> {
         this.date = date;
         this.studentId = studentId;
         this.homeworkId = homeworkId;
+        super.setId(studentId + "_" + homeworkId);
     }
 
     public String getTeacher() {

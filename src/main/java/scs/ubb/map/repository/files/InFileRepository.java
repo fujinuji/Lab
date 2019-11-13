@@ -31,8 +31,8 @@ public abstract class InFileRepository<ID, E extends Entity<ID>> extends InMemor
         return savedEntity;
     }
 
-    public E delete(E id) {
-        E savedEntity = super.update(id);
+    public E delete(ID id) {
+        E savedEntity = super.delete(id);
         if (savedEntity != null) {
             rewriteFile();
         }
