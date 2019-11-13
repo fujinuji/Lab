@@ -42,6 +42,6 @@ public class Main {
         grade.setId("1_2");
         grade = gradeHandler.getGradeWithConstraints(grade, new HashMap<>());
         ((GradeService) gradeService).save(grade, (StudentService) studentService, (HomeworkService) homeworkService,
-                "Prea bun", academicYear);
+                "Prea bun");
     }
 }

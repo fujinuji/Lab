@@ -15,8 +15,7 @@ public class GradeService extends Service<String, Grade> {
         this.gradeDTOJSONRepository = gradeDTOJSONRepository;
     }
 
-    public Grade save(Grade grade, StudentService studentService, HomeworkService homeworkService, String feedback,
-                      AcademicYear academicYear) {
+    public Grade save(Grade grade, StudentService studentService, HomeworkService homeworkService, String feedback) {
         Grade exitGrade = super.save(grade);
         if(exitGrade != null) {
             return exitGrade;
@@ -27,7 +26,7 @@ public class GradeService extends Service<String, Grade> {
         String studentName = student.getFirstName() + " " + student.getLastName();
 
         GradeDTO gradeDTO = new GradeDTO(studentName, homework.getId(), grade.getGrade(),
-                academicYear.getSemesterWeek(grade.getDate()), homework.getDeadlineWeek(), feedback);
+                AcademicYear.getInstance().getSemesterWeek(grade.getDate()), homework.getDeadlineWeek(), feedback);
         this.gradeDTOJSONRepository.write(gradeDTO);
         return exitGrade;
     }
