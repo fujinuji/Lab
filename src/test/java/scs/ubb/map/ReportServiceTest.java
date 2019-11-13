@@ -43,7 +43,6 @@ public class ReportServiceTest {
     @Test
     public void testGetStudentsByGroup() {
         assertEquals(3, reportsService.getStudentFromGroup(223).size());
-
     }
 
     @Test
