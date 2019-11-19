@@ -47,7 +47,7 @@ public class ReportServiceTest {
 
     @Test
     public void testGetStudentWithHomework() {
-        assertEquals(3, reportsService.getStudentsWithHomework(2).size());
+        assertEquals(4, reportsService.getStudentsWithHomework(2).size());
     }
 
     @Test
