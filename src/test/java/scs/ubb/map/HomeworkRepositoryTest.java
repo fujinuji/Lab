@@ -1,4 +1,4 @@
-package scs.ubbcluj.map;
+package scs.ubb.map;
 
 import com.google.common.collect.Iterables;
 import org.junit.Assert;
@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import scs.ubb.map.domain.Homework;
 import scs.ubb.map.repository.HomeworkRepository;
-import scs.ubb.map.validators.HomeworkValidator;
+import scs.ubb.map.validators.repository.HomeworkValidator;
 import scs.ubb.map.validators.ValidationException;
 
 @RunWith(JUnit4.class)

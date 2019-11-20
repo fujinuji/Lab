@@ -1,15 +1,9 @@
-package scs.ubb.map.repository;
+package scs.ubb.map.services.service;
 
 import scs.ubb.map.domain.Entity;
 import scs.ubb.map.validators.ValidationException;
 
-/**
- * CRUD operations repository interface
- *
- * @param <ID> - type E must have an attribute of type ID
- * @param <E>  - type of entities saved in repository
- */
-public interface CrudRepository<ID, E extends Entity<ID>> {
+public interface CrudService<ID, E extends Entity<ID>> {
     /**
      * @param id -the id of the entity to be returned
      *           id must not be null

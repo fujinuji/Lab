@@ -22,6 +22,4 @@ public class Homework extends Entity<Integer> {
         this.startWeek = startWeek;
         this.deadlineWeek = deadlineWeek;
     }
-
-
 }

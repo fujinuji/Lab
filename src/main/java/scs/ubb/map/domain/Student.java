@@ -49,8 +49,8 @@ public class Student extends Entity<Long> {
 
     @Override
     public String toString() {
-        return "Student{" + getId().toString()+
-                " name='" + lastName + " "  + firstName + '\'' +
+        return "Student{" + getId().toString() +
+                " name='" + lastName + " " + firstName + '\'' +
                 ", group=" + group +
                 '}';
     }
