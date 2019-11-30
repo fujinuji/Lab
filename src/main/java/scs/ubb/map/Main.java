@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
-        AcademicYear academicYear = new AcademicYear(Config.getProperties().getProperty("year-data"));
+        /*AcademicYear academicYear = new AcademicYear(Config.getProperties().getProperty("year-data"));
         CrudRepository studentRepo = new StudentFileRepository(new StudentValidator(),
                 Config.getProperties().getProperty("student-data"));
         CrudRepository homeworkRepo = new HomeworkFileRepository(new HomeworkValidator(),
@@ -42,6 +42,8 @@ public class Main {
         grade.setId("1_2");
         grade = gradeHandler.getGradeWithConstraints(grade, new HashMap<>());
         ((GradeService) gradeService).save(grade, (StudentService) studentService, (HomeworkService) homeworkService,
-                "Prea bun");
+                "Prea bun");*/
+
+        MainApp.main(args);
     }
 }
