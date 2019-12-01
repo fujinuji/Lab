@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<students>
+    <student id="2">
+        <firstName>Last</firstName>
+        <lastName>Nume</lastName>
+        <group>221</group>
+        <email>email</email>
+    </student>
+    <student id="3">
+        <firstName>Last</firstName>
+        <lastName>Nume</lastName>
+        <group>221</group>
+        <email>email</email>
+    </student>
+    <student id="22">
+        <firstName>Last</firstName>
+        <lastName>NumeUpdate</lastName>
+        <group>221</group>
+        <email>email</email>
+    </student>
+    <student id="26">
+        <firstName>Last</firstName>
+        <lastName>NumeUpdate</lastName>
+        <group>221</group>
+        <email>email</email>
+    </student>
+</students>

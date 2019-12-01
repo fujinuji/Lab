@@ -35,13 +35,4 @@ public class GradeHandler {
 
         return studentGrade;
     }
-
-   /* public static void main(String[] args) {
-        AcademicYear academicYear = new AcademicYear(ApplicationContext.getPROPERTIES().getProperty("year-data"));
-        Grade grade = new Grade("", 10, LocalDate.of(2019, 11, 1));
-        GradeHandler gradeHandler = new GradeHandler();
-        Map<String, Object> map = new HashMap<>();
-        map.put("motivated_absence", 0);
-        System.out.println(gradeHandler.getGradeWithConstraints(grade, map).getGrade());
-    }*/
 }
