@@ -6,16 +6,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="398.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scs.ubb.map.controllers.StudentController">
    <children>
       <SplitPane dividerPositions="0.16145307769929365" orientation="VERTICAL" prefHeight="398.0" prefWidth="602.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="studentAddButton" layoutX="24.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Adauga" />
-                  <Button fx:id="studentUpdateButton" layoutX="107.0" layoutY="17.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Actualizeaza" />
-                  <Button fx:id="studentDeleteButton" layoutX="210.0" layoutY="17.0" mnemonicParsing="false" text="Sterge" />
+                  <Button fx:id="studentAddButton" layoutX="24.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleAddStudent" prefHeight="26.0" prefWidth="66.0" text="Adauga" />
+                  <Button fx:id="studentUpdateButton" layoutX="107.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleUpdateStudent" prefHeight="26.0" prefWidth="86.0" text="Actualizeaza" />
+                  <Button fx:id="studentDeleteButton" layoutX="210.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleDeleteStudent" text="Sterge" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

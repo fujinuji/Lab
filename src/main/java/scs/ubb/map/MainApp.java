@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import scs.ubb.map.controllers.StudentController;
+import scs.ubb.map.repository.StudentRepository;
 import scs.ubb.map.repository.files.StudentFileRepository;
 import scs.ubb.map.services.config.Config;
 import scs.ubb.map.services.service.StudentService;
@@ -24,8 +25,7 @@ public class MainApp extends Application {
         primaryStage.setScene(new Scene(root));
 
         StudentController controller = studentLoader.getController();
-        controller.setStudentService(new StudentService(new StudentFileRepository(new StudentValidator(),
-                Config.getProperties().getProperty("student-data"))));
+        controller.setStudentService(new StudentService(new StudentRepository(new StudentValidator())));
         primaryStage.setWidth(800);
         primaryStage.show();
     }
