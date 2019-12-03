@@ -73,7 +73,6 @@ public class StudentController implements Observer<StudentChangeEvent> {
         studentsTable.setOnKeyPressed(event -> {
             if(event.getCode().equals(KeyCode.DELETE)) {
                 Student student = studentsTable.getSelectionModel().getSelectedItem();
-                System.out.println("Delete");
                 if (student != null) {
                     service.delete(student.getId());
                 }

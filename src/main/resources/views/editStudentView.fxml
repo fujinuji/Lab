@@ -24,7 +24,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label prefHeight="27.0" prefWidth="130.0" text="Id" textAlignment="CENTER">
+                <Label prefHeight="27.0" prefWidth="276.0" text="Id" textAlignment="CENTER">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -58,5 +58,10 @@
         </GridPane>
         <Button layoutX="182.0" layoutY="311.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="34.0" prefWidth="86.0" text="Save" />
         <Button layoutX="322.0" layoutY="311.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" text="Cancel" />
+      <Label fx:id="idValidationLabel" layoutX="465.0" layoutY="53.0" />
+      <Label fx:id="firstNameValidationLabel" layoutX="465.0" layoutY="94.0" />
+      <Label fx:id="lastNameValidationLabel" layoutX="465.0" layoutY="133.0" />
+      <Label fx:id="groupValidationLabel" layoutX="465.0" layoutY="174.0" />
+      <Label fx:id="emailValidationLabel" layoutX="465.0" layoutY="217.0" />
     </children>
 </AnchorPane>
