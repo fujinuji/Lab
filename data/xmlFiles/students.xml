@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<students>
+                
+    
+    
+    <student id="1">
+                                
+        
+        
+        <firstName>Ion</firstName>
+                                
+        
+        
+        <lastName>Popescu</lastName>
+                                
+        
+        
+        <group>222</group>
+                                
+        
+        
+        <email>al@mai.com</email>
+                            
+    
+    
+    </student>
+                
+    
+    
+            
+    
+    
+    <student id="3">
+                                
+        
+        
+        <firstName>NumeUpdate</firstName>
+                                
+        
+        
+        <lastName>Last hyhyhy</lastName>
+                                
+        
+        
+        <group>223</group>
+                                
+        
+        
+        <email>email@gmail.com</email>
+                            
+    
+    
+    </student>
+            
+    
+    
+    <student id="4">
+                        
+        
+        <firstName>First</firstName>
+                        
+        
+        <lastName>Name</lastName>
+                        
+        
+        <group>122</group>
+                        
+        
+        <email>Nume@x</email>
+                    
+    
+    </student>
+        
+    
+    <student id="5">
+                
+        <firstName>huhu</firstName>
+                
+        <lastName>huuh</lastName>
+                
+        <group>12</group>
+                
+        <email>jij@s</email>
+            
+    </student>
+    
+    <student id="2">
+        <firstName>Prenume</firstName>
+        <lastName>Nume</lastName>
+        <group>222</group>
+        <email>Mail</email>
+    </student>
+</students>

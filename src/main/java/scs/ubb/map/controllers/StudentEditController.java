@@ -4,14 +4,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import scs.ubb.map.controllers.alerts.MessageAlert;
 import scs.ubb.map.domain.Student;
 import scs.ubb.map.domain.controller.StudentControllerEntity;
 import scs.ubb.map.services.service.StudentService;
+import scs.ubb.map.utils.Generator;
 import scs.ubb.map.validators.ValidationException;
 import scs.ubb.map.validators.controller.StudentControllerValidator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentEditController {
 
@@ -108,6 +113,12 @@ public class StudentEditController {
                 emailValidationLabel.setTextFill(Color.RED);
             }
         });
+
+        studentEmailField.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)) {
+                handleSave();
+            }
+        });
     }
 
     public void setService(StudentService service, Stage stage, Student data) {
@@ -115,9 +126,13 @@ public class StudentEditController {
         this.data = data;
         this.stage = stage;
 
+        studentIdField.setEditable(false);
         if (data != null) {
             fillFields(data);
-            studentIdField.setEditable(false);
+        } else {
+            List<Student> students = new ArrayList<>();
+            service.findAll().forEach(students::add);
+            studentIdField.setText("" + Generator.generateStudentId(students));
         }
     }
 

@@ -43,12 +43,11 @@ public class ReportServiceTest {
     @Test
     public void testGetStudentsByGroup() {
         assertEquals(3, reportsService.getStudentFromGroup(223).size());
-
     }
 
     @Test
     public void testGetStudentWithHomework() {
-        assertEquals(3, reportsService.getStudentsWithHomework(2).size());
+        assertEquals(4, reportsService.getStudentsWithHomework(2).size());
     }
 
     @Test

@@ -13,6 +13,7 @@ public interface CrudService<ID, E extends Entity<ID>> {
      */
     E findOne(ID id);
 
+
     /**
      * @return all entities
      */

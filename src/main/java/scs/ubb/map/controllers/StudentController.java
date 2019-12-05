@@ -119,10 +119,15 @@ public class StudentController implements Observer<StudentChangeEvent> {
     @FXML
     public void handleDeleteStudent() {
         Student student = studentsTable.getSelectionModel().getSelectedItem();
-        service.delete(student.getId());
+
+        if(student != null) {
+            service.delete(student.getId());
+        } else {
+            MessageAlert.showErrorMessage(null, "You have to select a student");
+        }
     }
 
-    public void showMessageTaskEditDialog(Student messageTask) {
+    public void showMessageTaskEditDialog(Student student) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/views/editStudentView.fxml"));
@@ -137,7 +142,7 @@ public class StudentController implements Observer<StudentChangeEvent> {
             dialogStage.setScene(scene);
 
             StudentEditController studentEdiController = loader.getController();
-            studentEdiController.setService(service, dialogStage, messageTask);
+            studentEdiController.setService(service, dialogStage, student);
 
             dialogStage.show();
 
