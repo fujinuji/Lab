@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="396.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scs.ubb.map.controllers.GradeController">
+    <children>
+        <TableView fx:id="gradesTableView" prefHeight="396.0" prefWidth="494.0">
+            <columns>
+                <TableColumn fx:id="studentNameColumn" prefWidth="132.00000607967377" text="Nume student" />
+                <TableColumn fx:id="studentGradeColumn" prefWidth="51.199951171875" text="Nota" />
+                <TableColumn fx:id="homeworkColumn" prefWidth="56.800048828125" text="Tema" />
+                <TableColumn fx:id="presenationDateColumn" prefWidth="87.99992370605469" text="Data predarii" />
+                <TableColumn fx:id="deadlineColumn" prefWidth="62.4000244140625" text="Deadline" />
+                <TableColumn fx:id="teacherColumn" prefWidth="102.39999999999998" text="Profesor" />
+            </columns>
+        </TableView>
+        <ComboBox fx:id="homeworkComboBox" layoutX="637.0" layoutY="172.0" prefWidth="150.0" />
+        <DatePicker layoutX="513.0" layoutY="316.0" />
+        <TextField fx:id="studentSearchBar" layoutX="642.0" layoutY="21.0" prefHeight="26.0" prefWidth="140.0" />
+        <Label layoutX="527.0" layoutY="25.0" text="Cauta student" />
+      <Label layoutX="527.0" layoutY="176.0" text="Tema predata" />
+      <ListView fx:id="studentListView" layoutX="638.0" layoutY="57.0" prefHeight="104.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>

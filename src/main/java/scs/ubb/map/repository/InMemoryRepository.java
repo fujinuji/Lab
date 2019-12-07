@@ -52,7 +52,7 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements CrudReposit
         E oldValue = entities.get(entity.getId());
 
         if (oldValue == null) {
-            validator.validate(entity);
+            //validator.validate(entity);
             oldValue = entities.put(entity.getId(), entity);
         }
 
