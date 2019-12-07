@@ -34,7 +34,7 @@ public class InMemoryRepository<ID, E extends Entity<ID>> implements CrudReposit
 
     @Override
     public Iterable<E> findAll() {
-        return (Iterable<E>) entities.values();
+        return entities.values();
     }
 
     /**
