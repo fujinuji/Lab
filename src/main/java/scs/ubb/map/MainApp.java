@@ -23,6 +23,7 @@ import scs.ubb.map.services.config.Config;
 import scs.ubb.map.services.service.GradeService;
 import scs.ubb.map.services.service.HomeworkService;
 import scs.ubb.map.services.service.StudentService;
+import scs.ubb.map.utils.AcademicYear;
 import scs.ubb.map.validators.repository.GradeValidator;
 import scs.ubb.map.validators.repository.HomeworkValidator;
 import scs.ubb.map.validators.repository.StudentValidator;
@@ -39,6 +40,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        AcademicYear a = new AcademicYear(Config.getProperties().getProperty("year-data"));
         gradeScene(primaryStage);
         primaryStage.setWidth(850);
         primaryStage.show();

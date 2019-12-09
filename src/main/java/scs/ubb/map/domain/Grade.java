@@ -42,4 +42,19 @@ public class Grade extends Entity<String> {
         return homeworkId;
     }
 
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setHomeworkId(Integer homeworkId) {
+        this.homeworkId = homeworkId;
+    }
 }
