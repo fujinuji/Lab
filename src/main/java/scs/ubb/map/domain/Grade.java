@@ -52,9 +52,11 @@ public class Grade extends Entity<String> {
 
     public void setStudentId(Long studentId) {
         this.studentId = studentId;
+        this.setId(studentId + "_" + homeworkId);
     }
 
     public void setHomeworkId(Integer homeworkId) {
         this.homeworkId = homeworkId;
+        this.setId(studentId + "_" + homeworkId);
     }
 }

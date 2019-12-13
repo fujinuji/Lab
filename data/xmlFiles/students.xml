@@ -1,52 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <students>
-                
+                    
+    
     
     
     <student id="1">
-                                
+                                        
         
         
-        <firstName>Ion</firstName>
-                                
+        
+        <firstName>Pasca</firstName>
+                                        
         
         
-        <lastName>Popescu</lastName>
-                                
+        
+        <lastName>Alexandru</lastName>
+                                        
+        
         
         
         <group>222</group>
-                                
+                                        
+        
         
         
         <email>al@mai.com</email>
-                            
+                                    
+    
+    
+    
+    </student>
+                    
+    
+    
+            
+    
+    
+    
+    <student id="3">
+                                        
+        
+        
+        
+        <firstName>Popovici</firstName>
+                                        
+        
+        
+        
+        <lastName>Nicu</lastName>
+                                        
+        
+        
+        
+        <group>223</group>
+                                        
+        
+        
+        
+        <email>email@gmail.com</email>
+                                    
+    
     
     
     </student>
                 
     
     
-            
     
-    
-    <student id="3">
+    <student id="4">
                                 
         
         
-        <firstName>NumeUpdate</firstName>
+        <firstName>Niculai</firstName>
                                 
         
         
-        <lastName>Last hyhyhy</lastName>
+        <lastName>Andrei</lastName>
                                 
         
         
-        <group>223</group>
+        <group>122</group>
                                 
         
         
-        <email>email@gmail.com</email>
+        <email>Nume@x</email>
                             
     
     
@@ -54,40 +91,40 @@
             
     
     
-    <student id="4">
+    <student id="5">
                         
         
-        <firstName>First</firstName>
+        <firstName>Baciu</firstName>
                         
         
-        <lastName>Name</lastName>
+        <lastName>Teodora</lastName>
                         
         
-        <group>122</group>
+        <group>12</group>
                         
         
-        <email>Nume@x</email>
+        <email>jij@s</email>
                     
     
     </student>
         
     
-    <student id="5">
+    <student id="2">
                 
-        <firstName>huhu</firstName>
+        <firstName>Maiu</firstName>
                 
-        <lastName>huuh</lastName>
+        <lastName>Tudor</lastName>
                 
-        <group>12</group>
+        <group>222</group>
                 
-        <email>jij@s</email>
+        <email>Mail</email>
             
     </student>
     
-    <student id="2">
-        <firstName>Prenume</firstName>
-        <lastName>Nume</lastName>
-        <group>222</group>
-        <email>Mail</email>
+    <student id="6">
+        <firstName>Bogdan</firstName>
+        <lastName>Alexandru</lastName>
+        <group>13</group>
+        <email>alexandru@gmail.com</email>
     </student>
 </students>

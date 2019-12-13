@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
-
+import scs.ubb.map.controllers.alerts.MessageAlert;
 import scs.ubb.map.domain.Grade;
 import scs.ubb.map.domain.Homework;
 import scs.ubb.map.domain.Student;
@@ -20,10 +20,16 @@ import scs.ubb.map.services.service.HomeworkService;
 import scs.ubb.map.services.service.StudentService;
 import scs.ubb.map.utils.AcademicYear;
 import scs.ubb.map.utils.Constants;
+import scs.ubb.map.validators.ValidationException;
+import scs.ubb.map.validators.controller.GradeControllerValidator;
+import scs.ubb.map.validators.repository.GradeValidator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GradeController {
@@ -37,7 +43,8 @@ public class GradeController {
     private ObservableList<Homework> homeworkComboBoxList = FXCollections.observableArrayList();
 
     private Grade studentGrade = new Grade("", 0, LocalDate.now(), 1L, 0);
-
+    private GradeHandler gradeHandler;
+    private GradeControllerValidator gradeValidator = new GradeControllerValidator();
 
     @FXML
     private ListView<Student> studentListView;
@@ -86,6 +93,15 @@ public class GradeController {
 
     @FXML
     private TextField gradeTextField;
+
+    @FXML
+    private CheckBox absenceCheckBox;
+
+    @FXML
+    private CheckBox gradeDateInputCheckBox;
+
+    @FXML
+    private DatePicker teacherDatePicker;
 
     @FXML
     public void initialize() {
@@ -168,6 +184,7 @@ public class GradeController {
         this.gradeService = gradeService;
         this.studentService = studentService;
         this.homeworkService = homeworkService;
+        gradeHandler = new GradeHandler(homeworkService);
         updateModel();
         setHomeworkComboBox();
     }
@@ -206,12 +223,27 @@ public class GradeController {
         constraintsCheckBoxPane.setVisible(true);
         feedbackText.setPrefHeight(feedbackText.getPrefHeight() / 2);
     }
+
     @FXML
-    public void studentListViewMouseClicked() {}
+    public void studentListViewMouseClicked() {
+    }
 
     @FXML
     public void handleClick() {
-        reverse();
+        studentGrade.setGrade(Float.parseFloat(gradeTextField.getText()));
+        studentGrade.setTeacher("Teacher1");
+        studentGrade.setHomeworkId(homeworkComboBox.getSelectionModel().getSelectedItem().getId());
+        studentGrade.setStudentId(studentListView.getSelectionModel().getSelectedItem().getId());
+        try {
+            gradeValidator.studentAlreadyHasGrade(gradeService, studentListView.getSelectionModel().getSelectedItem(),
+                    homeworkComboBox.getSelectionModel().getSelectedItem());
+
+            gradeService.save(studentGrade, studentService, homeworkService, feedbackText.getText());
+            updateModel();
+            studentGrade = new Grade("", 0, LocalDate.now(), 1L, 0);
+        } catch (ValidationException e) {
+            MessageAlert.showErrorMessage(null, e.getMessage());
+        }
     }
 
     @FXML
@@ -221,7 +253,6 @@ public class GradeController {
 
         if (homework.getDeadlineWeek() < currentWeek) {
             String grade = gradeTextField.getText();
-            GradeHandler gradeHandler = new GradeHandler(homeworkService);
             Map<String, Object> constraints = new HashMap<>();
             studentGrade.setGrade(Float.parseFloat(grade));
             studentGrade.setHomeworkId(homework.getId());
@@ -234,5 +265,71 @@ public class GradeController {
         }
     }
 
+    @FXML
+    public void absenceCheckBoxOnAction(ActionEvent event) {
+        if (absenceCheckBox.isSelected()) {
+            absenceDatePane.setVisible(true);
+        } else {
+            absenceDatePane.setVisible(false);
+        }
+    }
 
+
+    @FXML
+    public void gradeDateInputCheckBoxOnAction(ActionEvent event) {
+        if (gradeDateInputCheckBox.isSelected()) {
+            teacherDatePane.setVisible(true);
+        } else {
+            teacherDatePane.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void teacherDatePickerOnAction(ActionEvent event) {
+        LocalDate date = teacherDatePicker.getValue();
+        studentGrade.setDate(date);
+        Map<String, Object> constraints = new HashMap<>();
+        constraints.put("teacherFault", null);
+        studentGrade = gradeHandler.getGradeWithConstraints(studentGrade, constraints);
+        gradeTextField.setText("" + studentGrade.getGrade());
+    }
+
+
+    @FXML
+    public void absenceDatePickerOnAction(ActionEvent event) {
+        LocalDate date = teacherDatePicker.getValue();
+        Homework homework = homeworkComboBox.getSelectionModel().getSelectedItem();
+        int week = AcademicYear.getInstance().getSemesterWeek(date);
+
+        if(homework.getDeadlineWeek() < week && homework.getStartWeek() < week) {
+        }
+    }
 }
+
+/*
+    private ObservableList<Homework> homeworkComboBoxList = FXCollections.observableArrayList();
+
+    initialize() {
+        homeworkComboBox.setConverter((new StringConverter<Homework>() {
+            @Override
+            public String toString(Homework object) {
+                if (object != null)
+                    return object.getDescription();
+                return null;
+            }
+
+            @Override
+            public Homework fromString(String string) {
+                return null;
+            }
+        }));
+
+        homeworkComboBox.setItems(homeworkComboBoxList);
+    }
+
+    setService(....) {
+        List<Homework> homeworkList = new ArrayList<>();
+        homeworkService.findAll().forEach(homeworkList::add);
+        homeworkComboBoxList.setAll(homeworkList);
+    }
+ */

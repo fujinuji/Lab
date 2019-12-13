@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 import scs.ubb.map.controllers.GradeController;
+import scs.ubb.map.controllers.ReportsController;
 import scs.ubb.map.controllers.StudentController;
 import scs.ubb.map.domain.Grade;
 import scs.ubb.map.domain.Homework;
@@ -24,6 +25,7 @@ import scs.ubb.map.services.service.GradeService;
 import scs.ubb.map.services.service.HomeworkService;
 import scs.ubb.map.services.service.StudentService;
 import scs.ubb.map.utils.AcademicYear;
+import scs.ubb.map.utils.ReportsService;
 import scs.ubb.map.validators.repository.GradeValidator;
 import scs.ubb.map.validators.repository.HomeworkValidator;
 import scs.ubb.map.validators.repository.StudentValidator;
@@ -41,7 +43,8 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         AcademicYear a = new AcademicYear(Config.getProperties().getProperty("year-data"));
-        gradeScene(primaryStage);
+        //gradeScene(primaryStage);
+        reportsShow(primaryStage);
         primaryStage.setWidth(850);
         primaryStage.show();
     }
@@ -75,7 +78,33 @@ public class MainApp extends Application {
         GradeService gradeService = new GradeService(gradeRepository,
                 new GradeJSONRepository(Config.getProperties().getProperty("student-grades-json")));
 
+        ReportsService reportsService = new ReportsService(studentService, homeworkService, gradeService);
+        reportsService.getStudentsWithMaxGrade();
+
         GradeController controller = gradeLoader.getController();
         controller.setServices(gradeService, studentService, homeworkService);
+    }
+
+    public void reportsShow(Stage primaryStage) throws Exception {
+        FXMLLoader gradeLoader = new FXMLLoader();
+        gradeLoader.setLocation(getClass().getResource("/views/reportsView.fxml"));
+        AnchorPane root = gradeLoader.load();
+        primaryStage.setScene(new Scene(root));
+
+        CrudRepository<Long, Student> studentRepository = new StudentXMLRepository(new StudentValidator(),
+                Config.getProperties().getProperty("student-data-xml"));
+        CrudRepository<Integer, Homework> homeworkRepository = new HomeworkFileRepository(new HomeworkValidator(),
+                Config.getProperties().getProperty("homework-data"));
+        CrudRepository<String, Grade> gradeRepository = new GradeFileRepository(new GradeValidator(studentRepository, homeworkRepository),
+                Config.getProperties().getProperty("grade-data"));
+
+        StudentService studentService = new StudentService(studentRepository);
+        HomeworkService homeworkService = new HomeworkService(homeworkRepository);
+        GradeService gradeService = new GradeService(gradeRepository,
+                new GradeJSONRepository(Config.getProperties().getProperty("student-grades-json")));
+
+
+        ReportsController controller = gradeLoader.getController();
+        controller.setService(studentService, homeworkService, gradeService);
     }
 }

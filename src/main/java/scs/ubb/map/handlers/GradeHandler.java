@@ -8,14 +8,35 @@ import java.util.Map;
 
 public class GradeHandler {
     private HomeworkService homeworkService;
+
     public GradeHandler(HomeworkService homeworkService) {
         this.homeworkService = homeworkService;
+    }
+
+    public Grade getGradeWithTeacherFault(Grade studentGrade) {
+        float finalGrade = studentGrade.getGrade();
+
+        int weekDifference = AcademicYear.getInstance().getCurrentWeek() - AcademicYear.getInstance().getSemesterWeek(studentGrade.getDate());
+        if (finalGrade + weekDifference > 10)
+            studentGrade.setGrade(10L);
+        else
+            studentGrade.setGrade(finalGrade + weekDifference);
+
+        return studentGrade;
     }
 
     public Grade getGradeWithConstraints(Grade studentGrade, Map<String, Object> constraints) {
         float finalGrade = studentGrade.getGrade();
         int weekDifference = AcademicYear.getInstance()
                 .getSemesterWeek(studentGrade.getDate()) - homeworkService.findOne(studentGrade.getHomeworkId()).getDeadlineWeek();
+
+        if (constraints.containsKey("teacherFault")) {
+            int teacherDifference = AcademicYear.getInstance().getCurrentWeek() -
+                    AcademicYear.getInstance().getSemesterWeek(studentGrade.getDate());
+            finalGrade += teacherDifference;
+            if (weekDifference - teacherDifference < 3)
+                studentGrade.setGrade(finalGrade);
+        }
 
         if (weekDifference > 0) {
             if (!constraints.containsKey("motivated_absence")) {
