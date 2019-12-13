@@ -22,7 +22,6 @@ import scs.ubb.map.utils.AcademicYear;
 import scs.ubb.map.utils.Constants;
 import scs.ubb.map.validators.ValidationException;
 import scs.ubb.map.validators.controller.GradeControllerValidator;
-import scs.ubb.map.validators.repository.GradeValidator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

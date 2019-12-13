@@ -43,8 +43,8 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         AcademicYear a = new AcademicYear(Config.getProperties().getProperty("year-data"));
-        //gradeScene(primaryStage);
-        reportsShow(primaryStage);
+        gradeScene(primaryStage);
+        //reportsShow(primaryStage);
         primaryStage.setWidth(850);
         primaryStage.show();
     }
