@@ -103,6 +103,14 @@ public class GradeController {
     private DatePicker teacherDatePicker;
 
     @FXML
+    private Pane gradeSavePane;
+
+    @FXML
+    private Pane confirmGradePane;
+
+
+
+    @FXML
     public void initialize() {
         studentListView.setCellFactory((ListView<Student> lv) -> {
                     return new ListCell<Student>() {
