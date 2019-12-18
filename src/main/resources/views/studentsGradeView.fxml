@@ -70,13 +70,13 @@
             <Label layoutX="72.0" layoutY="139.0" text="Data acordarii" />
             <Label layoutX="72.0" layoutY="190.0" text="Tema predata" />
             <Label layoutX="96.0" layoutY="243.0" text="Feedback" />
-            <Button layoutX="97.0" layoutY="377.0" mnemonicParsing="false" text="Salveaza" />
-            <Button layoutX="197.0" layoutY="377.0" mnemonicParsing="false" text="Anuleaza" />
-            <TextField layoutX="155.0" layoutY="41.0" prefHeight="25.0" prefWidth="181.0" />
-            <TextField layoutX="155.0" layoutY="86.0" prefHeight="25.0" prefWidth="181.0" />
-            <TextField layoutX="155.0" layoutY="135.0" prefHeight="25.0" prefWidth="181.0" />
-            <TextField layoutX="155.0" layoutY="186.0" prefHeight="25.0" prefWidth="181.0" />
-            <TextField layoutX="155.0" layoutY="239.0" prefHeight="119.0" prefWidth="181.0" />
+            <Button layoutX="97.0" layoutY="377.0" mnemonicParsing="false" onAction="#confirmSaveButton" text="Salveaza" />
+            <Button layoutX="197.0" layoutY="377.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Anuleaza" />
+            <TextField fx:id="confirmStudentNameField" layoutX="155.0" layoutY="41.0" prefHeight="25.0" prefWidth="181.0" />
+            <TextField fx:id="confirmStudentGradeField" layoutX="155.0" layoutY="86.0" prefHeight="25.0" prefWidth="181.0" />
+            <TextField fx:id="confirmStudentDateField" layoutX="155.0" layoutY="135.0" prefHeight="25.0" prefWidth="181.0" />
+            <TextField fx:id="confirmStudentHomeworkField" layoutX="155.0" layoutY="186.0" prefHeight="25.0" prefWidth="181.0" />
+            <TextField fx:id="confirmStudentFeedbackField" layoutX="155.0" layoutY="239.0" prefHeight="119.0" prefWidth="181.0" />
          </children>
       </Pane>
     </children>

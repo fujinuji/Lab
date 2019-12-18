@@ -108,7 +108,20 @@ public class GradeController {
     @FXML
     private Pane confirmGradePane;
 
+    @FXML
+    private TextField confirmStudentNameField;
 
+    @FXML
+    private TextField confirmStudentGradeField;
+
+    @FXML
+    private TextField confirmStudentDateField;
+
+    @FXML
+    private TextField confirmStudentFeedbackField;
+
+    @FXML
+    private TextField confirmStudentHomeworkField;
 
     @FXML
     public void initialize() {
@@ -162,6 +175,9 @@ public class GradeController {
         gradesTableView.setItems(tableModel);
         studentListView.setItems(listViewModel);
         homeworkComboBox.setItems(homeworkComboBoxList);
+
+        confirmGradePane.setVisible(false);
+
         noGradeConstraintsPaneHide();
     }
 
@@ -245,9 +261,15 @@ public class GradeController {
             gradeValidator.studentAlreadyHasGrade(gradeService, studentListView.getSelectionModel().getSelectedItem(),
                     homeworkComboBox.getSelectionModel().getSelectedItem());
 
-            gradeService.save(studentGrade, studentService, homeworkService, feedbackText.getText());
-            updateModel();
-            studentGrade = new Grade("", 0, LocalDate.now(), 1L, 0);
+            gradeSavePane.setVisible(false);
+            confirmGradePane.setVisible(true);
+
+            Student student = studentListView.getSelectionModel().getSelectedItem();
+            confirmStudentNameField.setText(student.getFirstName() + " " + student.getLastName());
+            confirmStudentGradeField.setText("" + studentGrade.getGrade());
+            confirmStudentDateField.setText("" + studentGrade.getDate());
+            confirmStudentHomeworkField.setText(homeworkComboBox.getSelectionModel().getSelectedItem().getDescription());
+            confirmStudentFeedbackField.setText(feedbackText.getText());
         } catch (ValidationException e) {
             MessageAlert.showErrorMessage(null, e.getMessage());
         }
@@ -311,32 +333,17 @@ public class GradeController {
         if(homework.getDeadlineWeek() < week && homework.getStartWeek() < week) {
         }
     }
+
+    public void confirmSaveButton(ActionEvent event) {
+        gradeService.save(studentGrade, studentService, homeworkService, feedbackText.getText());
+        updateModel();
+        studentGrade = new Grade("", 0, LocalDate.now(), 1L, 0);
+        gradeSavePane.setVisible(true);
+        confirmGradePane.setVisible(false);
+    }
+
+    public void cancelButtonOnAction(ActionEvent event) {
+        gradeSavePane.setVisible(true);
+        confirmGradePane.setVisible(false);
+    }
 }
-
-/*
-    private ObservableList<Homework> homeworkComboBoxList = FXCollections.observableArrayList();
-
-    initialize() {
-        homeworkComboBox.setConverter((new StringConverter<Homework>() {
-            @Override
-            public String toString(Homework object) {
-                if (object != null)
-                    return object.getDescription();
-                return null;
-            }
-
-            @Override
-            public Homework fromString(String string) {
-                return null;
-            }
-        }));
-
-        homeworkComboBox.setItems(homeworkComboBoxList);
-    }
-
-    setService(....) {
-        List<Homework> homeworkList = new ArrayList<>();
-        homeworkService.findAll().forEach(homeworkList::add);
-        homeworkComboBoxList.setAll(homeworkList);
-    }
- */
